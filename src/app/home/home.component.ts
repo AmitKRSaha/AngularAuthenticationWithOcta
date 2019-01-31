@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { OktaAuthWrapper } from '../shared';
 
 @Component({
-  template: `
-    <div *ngIf="givenName">
-      <h2>Welcome, {{givenName}}!</h2>
-      <button (click)="logout()">Logout</button>
-      <p><a routerLink="/search" routerLinkActive="active">Search</a></p>
-    </div>
-
-    <div *ngIf="!givenName">
-      <button (click)="login()">Login</button>
-    </div>`
+  selector:'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
 
-  constructor(private oauthService: OAuthService) {
+  username;
+  password;
+
+  constructor(private oauthService: OAuthService,
+    private oktaAuthWrapper: OktaAuthWrapper) {
   }
 
   login() {
@@ -32,5 +30,10 @@ export class HomeComponent {
       return null;
     }
     return claims['name'];
+  }
+
+  loginWithPassword() {
+    this.oktaAuthWrapper.login(this.username, this.password)
+      .catch(err => console.error('error logging in', err));
   }
 }
