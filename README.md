@@ -4,7 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `Used Octa For Authentication`
 
-### For More Details `https://developer.okta.com/blog/2017/04/17/angular-authentication-with-oidc`
+### For More Details 
+[Octa](https://developer.okta.com/blog/2017/04/17/angular-authentication-with-oidc)
 
 ## Development server
 
